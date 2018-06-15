@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pizzaria
+namespace Pizzaria.Módulos
 {
-    public partial class Form1 : Form
+    public partial class Produtos : Form
     {
-        public Form1()
+        public Produtos()
         {
             InitializeComponent();
         }
