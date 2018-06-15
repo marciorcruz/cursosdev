@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59F8EF46-4A4F-4D7A-B336-7C7ED71CA993}</ProjectGuid>
+    <ProjectGuid>{AF86AC58-76C1-4A1A-AF44-925C0DA58010}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Pizzaria</RootNamespace>
-    <AssemblyName>Pizzaria</AssemblyName>
+    <RootNamespace>MDM</RootNamespace>
+    <AssemblyName>MDM</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,8 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,23 +54,38 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Módulos\Cliente.cs">
+    <Compile Include="Models\dbMDM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbMDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbMDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbMDM.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\equipament.cs">
+      <DependentUpon>dbMDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\equipamenttype.cs">
+      <DependentUpon>dbMDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modulos\Equipamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Módulos\Cliente.Designer.cs">
-      <DependentUpon>Cliente.cs</DependentUpon>
+    <Compile Include="Modulos\Equipamento.Designer.cs">
+      <DependentUpon>Equipamento.cs</DependentUpon>
     </Compile>
-    <Compile Include="Módulos\Pedido.cs">
+    <Compile Include="Modulos\TipodeEquipamento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Módulos\Pedido.Designer.cs">
-      <DependentUpon>Pedido.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Módulos\Produtos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Módulos\Produtos.Designer.cs">
-      <DependentUpon>Produtos.cs</DependentUpon>
+    <Compile Include="Modulos\TipodeEquipamento.Designer.cs">
+      <DependentUpon>TipodeEquipamento.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -71,8 +95,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Módulos\Produtos.resx">
-      <DependentUpon>Produtos.cs</DependentUpon>
+    <EmbeddedResource Include="Modulos\Equipamento.resx">
+      <DependentUpon>Equipamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modulos\TipodeEquipamento.resx">
+      <DependentUpon>TipodeEquipamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
@@ -86,6 +113,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="Models\dbMDM.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbMDM.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\dbMDM.edmx.diagram">
+      <DependentUpon>dbMDM.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -99,8 +134,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="Models\dbMDM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbMDM.Context.cs</LastGenOutput>
+      <DependentUpon>dbMDM.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\dbMDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbMDM.edmx</DependentUpon>
+      <LastGenOutput>dbMDM.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

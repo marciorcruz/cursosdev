@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{59F8EF46-4A4F-4D7A-B336-7C7ED71CA993}</ProjectGuid>
+    <ProjectGuid>{23EA1AE9-E222-43B0-9985-866544865C8A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Pizzaria</RootNamespace>
-    <AssemblyName>Pizzaria</AssemblyName>
+    <RootNamespace>Locadora_Carros</RootNamespace>
+    <AssemblyName>Locadora_Carros</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,23 +45,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Módulos\Cliente.cs">
+    <Compile Include="Modules\Tabela_Fabricantes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Módulos\Cliente.Designer.cs">
-      <DependentUpon>Cliente.cs</DependentUpon>
+    <Compile Include="Modules\Tabela_Fabricantes.Designer.cs">
+      <DependentUpon>Tabela_Fabricantes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Módulos\Pedido.cs">
+    <Compile Include="Modules\Tabela_Modelos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Módulos\Pedido.Designer.cs">
-      <DependentUpon>Pedido.cs</DependentUpon>
+    <Compile Include="Modules\Tabela_Modelos.Designer.cs">
+      <DependentUpon>Tabela_Modelos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Módulos\Produtos.cs">
+    <Compile Include="Modules\Tabela_Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Módulos\Produtos.Designer.cs">
-      <DependentUpon>Produtos.cs</DependentUpon>
+    <Compile Include="Modules\Tabela_Usuario.Designer.cs">
+      <DependentUpon>Tabela_Usuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Tabela_Usuario_Veiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Tabela_Usuario_Veiculo.Designer.cs">
+      <DependentUpon>Tabela_Usuario_Veiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Tabela_Veiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules\Tabela_Veiculos.Designer.cs">
+      <DependentUpon>Tabela_Veiculos.cs</DependentUpon>
     </Compile>
     <Compile Include="Principal.cs">
       <SubType>Form</SubType>
@@ -71,8 +83,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Módulos\Produtos.resx">
-      <DependentUpon>Produtos.cs</DependentUpon>
+    <EmbeddedResource Include="Modules\Tabela_Fabricantes.resx">
+      <DependentUpon>Tabela_Fabricantes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
