@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mdmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="equipament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idequipamenttype" Type="int" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="code" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="equipamenttype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_equipament_equipamenttype">
+          <End Role="equipamenttype" Type="Self.equipamenttype" Multiplicity="0..1" />
+          <End Role="equipament" Type="Self.equipament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipamenttype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="equipament">
+              <PropertyRef Name="idequipamenttype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mdmModelStoreContainer">
+          <EntitySet Name="equipament" EntityType="Self.equipament" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="equipamenttype" EntityType="Self.equipamenttype" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_equipament_equipamenttype" Association="Self.FK_equipament_equipamenttype">
+            <End Role="equipamenttype" EntitySet="equipamenttype" />
+            <End Role="equipament" EntitySet="equipament" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mdmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="equipament">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idequipamenttype" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="equipamenttype" Relationship="Self.FK_equipament_equipamenttype" FromRole="equipament" ToRole="equipamenttype" />
+        </EntityType>
+        <EntityType Name="equipamenttype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="equipament" Relationship="Self.FK_equipament_equipamenttype" FromRole="equipamenttype" ToRole="equipament" />
+        </EntityType>
+        <Association Name="FK_equipament_equipamenttype">
+          <End Role="equipamenttype" Type="Self.equipamenttype" Multiplicity="0..1" />
+          <End Role="equipament" Type="Self.equipament" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="equipamenttype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="equipament">
+              <PropertyRef Name="idequipamenttype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mdmEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="equipament" EntityType="Self.equipament" />
+          <EntitySet Name="equipamenttype" EntityType="Self.equipamenttype" />
+          <AssociationSet Name="FK_equipament_equipamenttype" Association="Self.FK_equipament_equipamenttype">
+            <End Role="equipamenttype" EntitySet="equipamenttype" />
+            <End Role="equipament" EntitySet="equipament" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mdmModelStoreContainer" CdmEntityContainer="mdmEntities">
+          <EntitySetMapping Name="equipament">
+            <EntityTypeMapping TypeName="mdmModel.equipament">
+              <MappingFragment StoreEntitySet="equipament">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idequipamenttype" ColumnName="idequipamenttype" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="code" ColumnName="code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="equipamenttype">
+            <EntityTypeMapping TypeName="mdmModel.equipamenttype">
+              <MappingFragment StoreEntitySet="equipamenttype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
