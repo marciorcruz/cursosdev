@@ -34,6 +34,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -85,6 +87,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Modules\Tabela_Fabricantes.resx">
       <DependentUpon>Tabela_Fabricantes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Tabela_Modelos.resx">
+      <DependentUpon>Tabela_Modelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Tabela_Usuario.resx">
+      <DependentUpon>Tabela_Usuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Tabela_Usuario_Veiculo.resx">
+      <DependentUpon>Tabela_Usuario_Veiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\Tabela_Veiculos.resx">
+      <DependentUpon>Tabela_Veiculos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>

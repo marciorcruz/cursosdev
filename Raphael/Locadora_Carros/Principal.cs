@@ -132,6 +132,13 @@ namespace Locadora_Carros
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void aluguelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tabela_Usuario_Veiculo obj = new Tabela_Usuario_Veiculo();
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 
 
