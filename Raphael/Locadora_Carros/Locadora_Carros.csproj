@@ -32,9 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +56,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\dbLocadora_Carros.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbLocadora_Carros.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbLocadora_Carros.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\dbLocadora_Carros.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbLocadora_Carros.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tabela_Fabricantes.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tabela_Modelos.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tabela_Usuario.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tabela_Usuario_Veiculo.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tabela_Veiculos.cs">
+      <DependentUpon>dbLocadora_Carros.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Tabela_Fabricantes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +154,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="Models\dbLocadora_Carros.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbLocadora_Carros.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\dbLocadora_Carros.edmx.diagram">
+      <DependentUpon>dbLocadora_Carros.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,8 +175,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Content Include="Models\dbLocadora_Carros.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>dbLocadora_Carros.Context.cs</LastGenOutput>
+      <DependentUpon>dbLocadora_Carros.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\dbLocadora_Carros.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbLocadora_Carros.edmx</DependentUpon>
+      <LastGenOutput>dbLocadora_Carros.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
