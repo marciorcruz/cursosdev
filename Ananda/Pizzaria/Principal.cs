@@ -15,16 +15,15 @@ namespace Pizzaria
     {
         private int childFormNumber = 0;
 
-        public Principal()
-        {
-            InitializeComponent();
-        }
+        public Principal() => InitializeComponent();
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Form childForm = new Form();
-            childForm.MdiParent = this;
-            childForm.Text = "Janela " + childFormNumber++;
+            Form childForm = new Form
+            {
+                MdiParent = this,
+                Text = "Janela " + childFormNumber++
+            };
             childForm.Show();
         }
 

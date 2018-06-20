@@ -16,5 +16,13 @@ namespace Pizzaria.Módulos
         {
             InitializeComponent();
         }
+
+        private void btnAddProduto_Click(object sender, EventArgs e)
+        {
+            Produtos obj = new Produtos();
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
     }
 }
