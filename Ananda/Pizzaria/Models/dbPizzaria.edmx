@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="db_PizzariaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Endereco" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Complemento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CEP" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="Obs" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Composicao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Produto" Type="int" Nullable="false" />
+          <Property Name="fracao" Type="decimal" Precision="2" Scale="2" Nullable="false" />
+          <Property Name="id_item_pedido" Type="int" />
+        </EntityType>
+        <EntityType Name="Itens">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pedido" Type="int" Nullable="false" />
+          <Property Name="obs" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_Cliente" Type="int" Nullable="false" />
+          <Property Name="data" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Produtos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Produto" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Preco" Type="decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="id_Categoria" Type="int" />
+        </EntityType>
+        <Association Name="FK_itens_itens_pedido">
+          <End Role="Itens" Type="Self.Itens" Multiplicity="0..1" />
+          <End Role="Composicao" Type="Self.Composicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Itens">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Composicao">
+              <PropertyRef Name="id_item_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itens_pedido_pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Itens" Type="Self.Itens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Itens">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itens_produtos">
+          <End Role="Produtos" Type="Self.Produtos" Multiplicity="1" />
+          <End Role="Composicao" Type="Self.Composicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produtos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Composicao">
+              <PropertyRef Name="id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Produtos_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Produtos" Type="Self.Produtos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Produtos">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_PizzariaModelStoreContainer">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Composicao" EntityType="Self.Composicao" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Itens" EntityType="Self.Itens" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produtos" EntityType="Self.Produtos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_itens_itens_pedido" Association="Self.FK_itens_itens_pedido">
+            <End Role="Itens" EntitySet="Itens" />
+            <End Role="Composicao" EntitySet="Composicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itens_pedido_pedido" Association="Self.FK_itens_pedido_pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Itens" EntitySet="Itens" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itens_produtos" Association="Self.FK_itens_produtos">
+            <End Role="Produtos" EntitySet="Produtos" />
+            <End Role="Composicao" EntitySet="Composicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedido_Cliente" Association="Self.FK_pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Produtos_Categoria" Association="Self.FK_Produtos_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Produtos" EntitySet="Produtos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_PizzariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Produtos" Relationship="Self.FK_Produtos_Categoria" FromRole="Categoria" ToRole="Produtos" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CEP" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Obs" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Composicao">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Produto" Type="Int32" Nullable="false" />
+          <Property Name="fracao" Type="Decimal" Precision="2" Scale="2" Nullable="false" />
+          <Property Name="id_item_pedido" Type="Int32" />
+          <NavigationProperty Name="Itens" Relationship="Self.FK_itens_itens_pedido" FromRole="Composicao" ToRole="Itens" />
+          <NavigationProperty Name="Produtos" Relationship="Self.FK_itens_produtos" FromRole="Composicao" ToRole="Produtos" />
+        </EntityType>
+        <EntityType Name="Itens">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pedido" Type="Int32" Nullable="false" />
+          <Property Name="obs" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Composicao" Relationship="Self.FK_itens_itens_pedido" FromRole="Itens" ToRole="Composicao" />
+          <NavigationProperty Name="Pedido" Relationship="Self.FK_itens_pedido_pedido" FromRole="Itens" ToRole="Pedido" />
+        </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="Itens" Relationship="Self.FK_itens_pedido_pedido" FromRole="Pedido" ToRole="Itens" />
+        </EntityType>
+        <EntityType Name="Produtos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Produto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Preco" Type="Decimal" Precision="4" Scale="2" Nullable="false" />
+          <Property Name="id_Categoria" Type="Int32" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Produtos_Categoria" FromRole="Produtos" ToRole="Categoria" />
+          <NavigationProperty Name="Composicao" Relationship="Self.FK_itens_produtos" FromRole="Produtos" ToRole="Composicao" />
+        </EntityType>
+        <Association Name="FK_Produtos_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Produtos" Type="Self.Produtos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Produtos">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_pedido_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itens_itens_pedido">
+          <End Role="Itens" Type="Self.Itens" Multiplicity="0..1" />
+          <End Role="Composicao" Type="Self.Composicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Itens">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Composicao">
+              <PropertyRef Name="id_item_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itens_produtos">
+          <End Role="Produtos" Type="Self.Produtos" Multiplicity="1" />
+          <End Role="Composicao" Type="Self.Composicao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produtos">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Composicao">
+              <PropertyRef Name="id_Produto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_itens_pedido_pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Itens" Type="Self.Itens" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Itens">
+              <PropertyRef Name="id_pedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_PizzariaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Composicao" EntityType="Self.Composicao" />
+          <EntitySet Name="Itens" EntityType="Self.Itens" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+          <EntitySet Name="Produtos" EntityType="Self.Produtos" />
+          <AssociationSet Name="FK_Produtos_Categoria" Association="Self.FK_Produtos_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Produtos" EntitySet="Produtos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_pedido_Cliente" Association="Self.FK_pedido_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itens_itens_pedido" Association="Self.FK_itens_itens_pedido">
+            <End Role="Itens" EntitySet="Itens" />
+            <End Role="Composicao" EntitySet="Composicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itens_produtos" Association="Self.FK_itens_produtos">
+            <End Role="Produtos" EntitySet="Produtos" />
+            <End Role="Composicao" EntitySet="Composicao" />
+          </AssociationSet>
+          <AssociationSet Name="FK_itens_pedido_pedido" Association="Self.FK_itens_pedido_pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Itens" EntitySet="Itens" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_PizzariaModelStoreContainer" CdmEntityContainer="db_PizzariaEntities">
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="Obs" ColumnName="Obs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Composicao">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Composicao">
+              <MappingFragment StoreEntitySet="Composicao">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Produto" ColumnName="id_Produto" />
+                <ScalarProperty Name="fracao" ColumnName="fracao" />
+                <ScalarProperty Name="id_item_pedido" ColumnName="id_item_pedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Itens">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Itens">
+              <MappingFragment StoreEntitySet="Itens">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pedido" ColumnName="id_pedido" />
+                <ScalarProperty Name="obs" ColumnName="obs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_Cliente" ColumnName="id_Cliente" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produtos">
+            <EntityTypeMapping TypeName="db_PizzariaModel.Produtos">
+              <MappingFragment StoreEntitySet="Produtos">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Produto" ColumnName="Produto" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="id_Categoria" ColumnName="id_Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4c108caecb3d45f0b943b19b7f3de6dc" Name="Diagram1">
+        <EntityTypeShape EntityType="db_PizzariaModel.Categoria" Width="1.5" PointX="0.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PizzariaModel.Cliente" Width="1.5" PointX="11.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PizzariaModel.Composicao" Width="1.5" PointX="5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PizzariaModel.Itens" Width="1.5" PointX="7.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PizzariaModel.Pedido" Width="1.5" PointX="9.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_PizzariaModel.Produtos" Width="1.5" PointX="2.75" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="db_PizzariaModel.FK_Produtos_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="db_PizzariaModel.FK_pedido_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="db_PizzariaModel.FK_itens_itens_pedido" ManuallyRouted="false" />
+        <AssociationConnector Association="db_PizzariaModel.FK_itens_produtos" ManuallyRouted="false" />
+        <AssociationConnector Association="db_PizzariaModel.FK_itens_pedido_pedido" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
