@@ -21,14 +21,14 @@ namespace Pizzaria.Módulos
         {
             Produtos obj = new Produtos();
             obj.MdiParent = this.ParentForm;
-            obj.Show();
+            obj.ShowDialog();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
             Cliente obj = new Cliente();
             obj.MdiParent = this.ParentForm;
-            obj.Show();
+            obj.ShowDialog();
         }
     }
 }

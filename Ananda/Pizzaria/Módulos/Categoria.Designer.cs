@@ -179,7 +179,7 @@
             this.ClientSize = new System.Drawing.Size(321, 298);
             this.Controls.Add(this.groupBox2);
             this.Name = "Categoria";
-            this.Text = "Categoria de Produtos";
+            this.Text = "Categoria";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
