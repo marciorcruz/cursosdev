@@ -22,13 +22,13 @@ namespace Pontosnotaveis.Modulos
             InitializeComponent();
         }
 
-        private void lista()
+        private void Lista()
         {
             string find = this.textfiltro.Text.ToString().Trim();
-            List<tipodeelemento> lista = db.tipodeelemento.Where(t => t.nome.Contains(find)).ToList();
-            if (lista != null)
+            List<tipodeelemento> Lista = db.tipodeelemento.Where(t => t.nome.Contains(find)).ToList();
+            if (Lista != null)
             {
-                this.dgvlista.DataSource = new BindingList<tipodeelemento>(lista);
+                this.dgvlista.DataSource = new BindingList<tipodeelemento>(Lista);
                 this.dgvlista.Update();
             }
 
@@ -65,19 +65,19 @@ namespace Pontosnotaveis.Modulos
                 obj.nome = this.textnome.Text.Trim();
             }
             db.SaveChanges();
-            this.lista();
+            this.Lista();
             this.clear();
 
         }
 
         private void tiposdeelementos_Load(object sender, EventArgs e)
         {
-            this.lista();
+            this.Lista();
         }
 
         private void btnprocurar_Click(object sender, EventArgs e)
         {
-            this.lista();
+            this.Lista();
         }
 
         private void dgvlista_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -102,7 +102,7 @@ namespace Pontosnotaveis.Modulos
         {
             db.tipodeelemento.Remove(obj);
             db.SaveChanges();
-            this.lista();
+            this.Lista();
             this.clear();
         }
     }
