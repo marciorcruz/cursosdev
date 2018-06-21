@@ -154,6 +154,7 @@
             this.button7.TabIndex = 28;
             this.button7.Text = "Cadastrar";
             this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // textBox10
             // 
