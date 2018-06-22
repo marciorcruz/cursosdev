@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Dudu.Properties
+namespace Estacas.Properties
 {
 
 

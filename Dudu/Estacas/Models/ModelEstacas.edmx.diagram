@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="76c45dc199604054aa2b82540bf6f44a" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="dbModel.Answer" Width="1.5" PointX="10.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Pillar" Width="1.5" PointX="3.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Projects" Width="1.5" PointX="3.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Projects_Piles" Width="1.5" PointX="6.125" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Table_Items" Width="1.5" PointX="8.375" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbModel.Tables" Width="1.5" PointX="6.125" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="dbModel.FK_Answer_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbModel.FK_Projects_Piles_ID_Table_Items" ManuallyRouted="false" ></AssociationConnector>
+        <AssociationConnector Association="dbModel.FK_Table_Items_Tables" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="dbModel.sysdiagrams" Width="1.5" PointX="8.375" PointY="2.625" />
+        <AssociationConnector Association="dbModel.FK_Answer_ID_a" />
+        <AssociationConnector Association="dbModel.FK_Answer_ID_K" />
+        <AssociationConnector Association="dbModel.FK_Projects_Piles_Pillar" />
+        <AssociationConnector Association="dbModel.FK_Projects_Piles_ID_Projects" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

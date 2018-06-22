@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Estacas.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dudu
+namespace Estacas
 {
     static class Program
     {
@@ -16,7 +17,7 @@ namespace Dudu
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Principal());
+            Application.Run(new MDI());
         }
     }
 }

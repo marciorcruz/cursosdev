@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dudu.Model
+namespace Estacas.Models
 {
-    public partial class Usuario : Form
+    public partial class Form_Pillar : Form
     {
-        public Usuario()
+        public Form_Pillar()
         {
             InitializeComponent();
         }

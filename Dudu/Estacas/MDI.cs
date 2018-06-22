@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Dudu
+namespace Estacas.Models
 {
-    public partial class Principal : Form
+    public partial class MDI : Form
     {
         private int childFormNumber = 0;
 
-        public Principal()
+        public MDI()
         {
             InitializeComponent();
         }
@@ -68,7 +68,7 @@ namespace Dudu
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            toolStrip.Visible = toolBarToolStripMenuItem.Checked;
+            //toolStrip.Visible = toolBarToolStripMenuItem.Checked;
         }
 
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -102,6 +102,27 @@ namespace Dudu
             {
                 childForm.Close();
             }
+        }
+
+        private void tabelasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Tables F_T = new Form_Tables();
+            F_T.MdiParent = this;
+            F_T.Show();
+        }
+
+        private void pilaresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Pillar F_P = new Form_Pillar();
+            F_P.MdiParent = this;
+            F_P.Show();
+        }
+
+        private void projetosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form_Projects F_P = new Form_Projects();
+            F_P.MdiParent = this;
+            F_P.Show();
         }
     }
 }

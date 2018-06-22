@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dudu", "Dudu\Dudu.csproj", "{17549FB2-6503-4DF1-B9CA-C20091BC4ACA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fundacoes", "Estacas\Fundacoes.csproj", "{33AFEFF6-25DE-4780-A275-ECF284923969}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{17549FB2-6503-4DF1-B9CA-C20091BC4ACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{17549FB2-6503-4DF1-B9CA-C20091BC4ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{17549FB2-6503-4DF1-B9CA-C20091BC4ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{17549FB2-6503-4DF1-B9CA-C20091BC4ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33AFEFF6-25DE-4780-A275-ECF284923969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33AFEFF6-25DE-4780-A275-ECF284923969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33AFEFF6-25DE-4780-A275-ECF284923969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33AFEFF6-25DE-4780-A275-ECF284923969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {741AC67A-46A7-4E2A-9620-15E94E79C1EB}
+		SolutionGuid = {AA54B2C3-3EE0-4774-A491-33A78CF31DE7}
 	EndGlobalSection
 EndGlobal
