@@ -16,5 +16,10 @@ namespace Locadora_Carros.Modules
         {
             InitializeComponent();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

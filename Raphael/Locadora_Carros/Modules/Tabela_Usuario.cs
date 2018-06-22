@@ -16,5 +16,10 @@ namespace Locadora_Carros.Modules
         {
             InitializeComponent();
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

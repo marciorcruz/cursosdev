@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bbc7269ea1734f149f5efb2d24bf9d25" Name="Diagram1">
+        <EntityTypeShape EntityType="dbempresasparaisoModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Fabricantes" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Modelos" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Usuario" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Veiculos" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Usuario_Veiculo" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Modelos_Tabela_Modelos" ManuallyRouted="false" />
+        <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Veiculos_Tabela_Veiculos" ManuallyRouted="false" />
+        <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Usuario_Veiculo_Tabela_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Usuario_Veiculo_Tabela_Veiculos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

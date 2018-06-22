@@ -16,5 +16,15 @@ namespace Locadora_Carros.Modules
         {
             InitializeComponent();
         }
+
+        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

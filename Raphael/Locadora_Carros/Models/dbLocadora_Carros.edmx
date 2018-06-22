@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbempresasparaisoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tabela_Fabricantes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fabricante" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tabela_Modelos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Modelo" Type="varchar" MaxLength="100" />
+          <Property Name="ID_Fabricante" Type="int" />
+        </EntityType>
+        <EntityType Name="Tabela_Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tabela_Usuario_Veiculo">
+          <Key>
+            <PropertyRef Name="ID_Veiculo" />
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Veiculo" Type="int" Nullable="false" />
+          <Property Name="ID_Usuario" Type="int" Nullable="false" />
+          <Property Name="Dias" Type="int" />
+          <Property Name="Valor_Total" Type="money" />
+        </EntityType>
+        <EntityType Name="Tabela_Veiculos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Modelo" Type="int" Nullable="false" />
+          <Property Name="Motor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Valor_Diaria" Type="money" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Tabela_Modelos_Tabela_Modelos">
+          <End Role="Tabela_Fabricantes" Type="Self.Tabela_Fabricantes" Multiplicity="0..1" />
+          <End Role="Tabela_Modelos" Type="Self.Tabela_Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Fabricantes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Modelos">
+              <PropertyRef Name="ID_Fabricante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Usuario-Veiculo_Tabela_Usuario">
+          <End Role="Tabela_Usuario" Type="Self.Tabela_Usuario" Multiplicity="1" />
+          <End Role="Tabela_Usuario_Veiculo" Type="Self.Tabela_Usuario_Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Usuario_Veiculo">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Usuario-Veiculo_Tabela_Veiculos">
+          <End Role="Tabela_Veiculos" Type="Self.Tabela_Veiculos" Multiplicity="1" />
+          <End Role="Tabela_Usuario_Veiculo" Type="Self.Tabela_Usuario_Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Veiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Usuario_Veiculo">
+              <PropertyRef Name="ID_Veiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Veiculos_Tabela_Veiculos">
+          <End Role="Tabela_Modelos" Type="Self.Tabela_Modelos" Multiplicity="1" />
+          <End Role="Tabela_Veiculos" Type="Self.Tabela_Veiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Modelos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Veiculos">
+              <PropertyRef Name="ID_Modelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbempresasparaisoModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Fabricantes" EntityType="Self.Tabela_Fabricantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Modelos" EntityType="Self.Tabela_Modelos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Usuario" EntityType="Self.Tabela_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Veiculos" EntityType="Self.Tabela_Veiculos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Usuario_Veiculo" EntityType="Self.Tabela_Usuario_Veiculo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Tabela_Usuario_Veiculo].[ID_Veiculo] AS [ID_Veiculo], 
+    [Tabela_Usuario_Veiculo].[ID_Usuario] AS [ID_Usuario], 
+    [Tabela_Usuario_Veiculo].[Dias] AS [Dias], 
+    [Tabela_Usuario_Veiculo].[Valor_Total] AS [Valor_Total]
+    FROM [dbo].[Tabela_Usuario_Veiculo] AS [Tabela_Usuario_Veiculo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Tabela_Modelos_Tabela_Modelos" Association="Self.FK_Tabela_Modelos_Tabela_Modelos">
+            <End Role="Tabela_Fabricantes" EntitySet="Tabela_Fabricantes" />
+            <End Role="Tabela_Modelos" EntitySet="Tabela_Modelos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Usuario-Veiculo_Tabela_Usuario" Association="Self.FK_Tabela_Usuario-Veiculo_Tabela_Usuario">
+            <End Role="Tabela_Usuario" EntitySet="Tabela_Usuario" />
+            <End Role="Tabela_Usuario_Veiculo" EntitySet="Tabela_Usuario_Veiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Usuario-Veiculo_Tabela_Veiculos" Association="Self.FK_Tabela_Usuario-Veiculo_Tabela_Veiculos">
+            <End Role="Tabela_Veiculos" EntitySet="Tabela_Veiculos" />
+            <End Role="Tabela_Usuario_Veiculo" EntitySet="Tabela_Usuario_Veiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Veiculos_Tabela_Veiculos" Association="Self.FK_Tabela_Veiculos_Tabela_Veiculos">
+            <End Role="Tabela_Modelos" EntitySet="Tabela_Modelos" />
+            <End Role="Tabela_Veiculos" EntitySet="Tabela_Veiculos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbempresasparaisoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tabela_Fabricantes">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fabricante" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tabela_Modelos" Relationship="Self.FK_Tabela_Modelos_Tabela_Modelos" FromRole="Tabela_Fabricantes" ToRole="Tabela_Modelos" />
+        </EntityType>
+        <EntityType Name="Tabela_Modelos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Modelo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Fabricante" Type="Int32" />
+          <NavigationProperty Name="Tabela_Fabricantes" Relationship="Self.FK_Tabela_Modelos_Tabela_Modelos" FromRole="Tabela_Modelos" ToRole="Tabela_Fabricantes" />
+          <NavigationProperty Name="Tabela_Veiculos" Relationship="Self.FK_Tabela_Veiculos_Tabela_Veiculos" FromRole="Tabela_Modelos" ToRole="Tabela_Veiculos" />
+        </EntityType>
+        <EntityType Name="Tabela_Usuario">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tabela_Usuario_Veiculo" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Usuario" FromRole="Tabela_Usuario" ToRole="Tabela_Usuario_Veiculo" />
+        </EntityType>
+        <EntityType Name="Tabela_Veiculos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Modelo" Type="Int32" Nullable="false" />
+          <Property Name="Motor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Valor_Diaria" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tabela_Modelos" Relationship="Self.FK_Tabela_Veiculos_Tabela_Veiculos" FromRole="Tabela_Veiculos" ToRole="Tabela_Modelos" />
+          <NavigationProperty Name="Tabela_Usuario_Veiculo" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Veiculos" FromRole="Tabela_Veiculos" ToRole="Tabela_Usuario_Veiculo" />
+        </EntityType>
+        <EntityType Name="Tabela_Usuario_Veiculo">
+          <Key>
+            <PropertyRef Name="ID_Veiculo" />
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Veiculo" Type="Int32" Nullable="false" />
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" />
+          <Property Name="Dias" Type="Int32" />
+          <Property Name="Valor_Total" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Tabela_Usuario" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Usuario" FromRole="Tabela_Usuario_Veiculo" ToRole="Tabela_Usuario" />
+          <NavigationProperty Name="Tabela_Veiculos" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Veiculos" FromRole="Tabela_Usuario_Veiculo" ToRole="Tabela_Veiculos" />
+        </EntityType>
+        <Association Name="FK_Tabela_Modelos_Tabela_Modelos">
+          <End Role="Tabela_Fabricantes" Type="Self.Tabela_Fabricantes" Multiplicity="0..1" />
+          <End Role="Tabela_Modelos" Type="Self.Tabela_Modelos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Fabricantes">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Modelos">
+              <PropertyRef Name="ID_Fabricante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Veiculos_Tabela_Veiculos">
+          <End Role="Tabela_Modelos" Type="Self.Tabela_Modelos" Multiplicity="1" />
+          <End Role="Tabela_Veiculos" Type="Self.Tabela_Veiculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Modelos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Veiculos">
+              <PropertyRef Name="ID_Modelo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Usuario_Veiculo_Tabela_Usuario">
+          <End Role="Tabela_Usuario" Type="Self.Tabela_Usuario" Multiplicity="1" />
+          <End Role="Tabela_Usuario_Veiculo" Type="Self.Tabela_Usuario_Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Usuario">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Usuario_Veiculo">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tabela_Usuario_Veiculo_Tabela_Veiculos">
+          <End Role="Tabela_Veiculos" Type="Self.Tabela_Veiculos" Multiplicity="1" />
+          <End Role="Tabela_Usuario_Veiculo" Type="Self.Tabela_Usuario_Veiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tabela_Veiculos">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Tabela_Usuario_Veiculo">
+              <PropertyRef Name="ID_Veiculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbempresasparaisoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tabela_Fabricantes" EntityType="Self.Tabela_Fabricantes" />
+          <EntitySet Name="Tabela_Modelos" EntityType="Self.Tabela_Modelos" />
+          <EntitySet Name="Tabela_Usuario" EntityType="Self.Tabela_Usuario" />
+          <EntitySet Name="Tabela_Veiculos" EntityType="Self.Tabela_Veiculos" />
+          <EntitySet Name="Tabela_Usuario_Veiculo" EntityType="Self.Tabela_Usuario_Veiculo" />
+          <AssociationSet Name="FK_Tabela_Modelos_Tabela_Modelos" Association="Self.FK_Tabela_Modelos_Tabela_Modelos">
+            <End Role="Tabela_Fabricantes" EntitySet="Tabela_Fabricantes" />
+            <End Role="Tabela_Modelos" EntitySet="Tabela_Modelos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Veiculos_Tabela_Veiculos" Association="Self.FK_Tabela_Veiculos_Tabela_Veiculos">
+            <End Role="Tabela_Modelos" EntitySet="Tabela_Modelos" />
+            <End Role="Tabela_Veiculos" EntitySet="Tabela_Veiculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Usuario_Veiculo_Tabela_Usuario" Association="Self.FK_Tabela_Usuario_Veiculo_Tabela_Usuario">
+            <End Role="Tabela_Usuario" EntitySet="Tabela_Usuario" />
+            <End Role="Tabela_Usuario_Veiculo" EntitySet="Tabela_Usuario_Veiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tabela_Usuario_Veiculo_Tabela_Veiculos" Association="Self.FK_Tabela_Usuario_Veiculo_Tabela_Veiculos">
+            <End Role="Tabela_Veiculos" EntitySet="Tabela_Veiculos" />
+            <End Role="Tabela_Usuario_Veiculo" EntitySet="Tabela_Usuario_Veiculo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbempresasparaisoModelStoreContainer" CdmEntityContainer="dbempresasparaisoEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabela_Fabricantes">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Fabricantes">
+              <MappingFragment StoreEntitySet="Tabela_Fabricantes">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Fabricante" ColumnName="Fabricante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabela_Modelos">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Modelos">
+              <MappingFragment StoreEntitySet="Tabela_Modelos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="ID_Fabricante" ColumnName="ID_Fabricante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabela_Usuario">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Usuario">
+              <MappingFragment StoreEntitySet="Tabela_Usuario">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome_Usuario" ColumnName="Nome_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabela_Veiculos">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Veiculos">
+              <MappingFragment StoreEntitySet="Tabela_Veiculos">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Modelo" ColumnName="ID_Modelo" />
+                <ScalarProperty Name="Motor" ColumnName="Motor" />
+                <ScalarProperty Name="Valor_Diaria" ColumnName="Valor_Diaria" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tabela_Usuario_Veiculo">
+            <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Usuario_Veiculo">
+              <MappingFragment StoreEntitySet="Tabela_Usuario_Veiculo">
+                <ScalarProperty Name="ID_Veiculo" ColumnName="ID_Veiculo" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Dias" ColumnName="Dias" />
+                <ScalarProperty Name="Valor_Total" ColumnName="Valor_Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
