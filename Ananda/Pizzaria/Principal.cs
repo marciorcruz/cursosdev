@@ -95,5 +95,12 @@ namespace Pizzaria
             obj.MdiParent = this;
             obj.Show();
         }
+
+        private void tipoDeProdutoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Categoria obj = new Categoria();
+            obj.MdiParent = this;
+            obj.Show();
+        }
     }
 }

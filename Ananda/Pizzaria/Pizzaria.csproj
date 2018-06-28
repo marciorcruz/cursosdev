@@ -152,6 +152,7 @@
     </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Pizzaria.Models.Categoria.datasource" />
+    <None Include="Properties\DataSources\Pizzaria.Models.Produtos.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
