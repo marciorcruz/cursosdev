@@ -16,5 +16,17 @@ namespace Pizzaria.Módulos
         {
             InitializeComponent();
         }
+
+        private void btnAddProduto_Click(object sender, EventArgs e)
+        {
+            Produtos obj = new Produtos();
+            obj.ShowDialog();
+        }
+
+        private void btnCadCliente_Click(object sender, EventArgs e)
+        {
+            Cliente obj = new Cliente();
+            obj.ShowDialog();
+        }
     }
 }

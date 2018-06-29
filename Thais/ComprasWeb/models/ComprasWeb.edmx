@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ComprasWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LOJA">
+          <Key>
+            <PropertyRef Name="ID_LOJA" />
+          </Key>
+          <Property Name="ID_LOJA" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME_LOJA" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LOCALIDADE" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PEDIDOS">
+          <Key>
+            <PropertyRef Name="ID_PEDIDO" />
+          </Key>
+          <Property Name="ID_PEDIDO" Type="bigint" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="bigint" Nullable="false" />
+          <Property Name="VALOR" Type="varchar" MaxLength="100" />
+          <Property Name="N_PEDIDO" Type="bigint" Nullable="false" />
+          <Property Name="ID_PRODUTO" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUTO">
+          <Key>
+            <PropertyRef Name="ID_PRODUTO" />
+          </Key>
+          <Property Name="ID_PRODUTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TIPO_PRODUTO" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RELACAO_LOJA_PRODUTO">
+          <Key>
+            <PropertyRef Name="ID_RELACAO_LOJA_PRODUTO" />
+          </Key>
+          <Property Name="ID_RELACAO_LOJA_PRODUTO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_LOJA" Type="bigint" Nullable="false" />
+          <Property Name="ID_PRODUTO" Type="bigint" Nullable="false" />
+          <Property Name="ESTOQUE" Type="bigint" />
+        </EntityType>
+        <Association Name="FK_PEDIDOS_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="1" />
+          <End Role="PEDIDOS" Type="Self.PEDIDOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="PEDIDOS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="PEDIDOS" Type="Self.PEDIDOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Principal>
+            <Dependent Role="PEDIDOS">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RELACAO_LOJA_PRODUTO_LOJA">
+          <End Role="LOJA" Type="Self.LOJA" Multiplicity="1" />
+          <End Role="RELACAO_LOJA_PRODUTO" Type="Self.RELACAO_LOJA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOJA">
+              <PropertyRef Name="ID_LOJA" />
+            </Principal>
+            <Dependent Role="RELACAO_LOJA_PRODUTO">
+              <PropertyRef Name="ID_LOJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RELACAO_LOJA_PRODUTO_PRODUTO">
+          <End Role="PRODUTO" Type="Self.PRODUTO" Multiplicity="1" />
+          <End Role="RELACAO_LOJA_PRODUTO" Type="Self.RELACAO_LOJA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Principal>
+            <Dependent Role="RELACAO_LOJA_PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ComprasWebModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LOJA" EntityType="Self.LOJA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PEDIDOS" EntityType="Self.PEDIDOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUTO" EntityType="Self.PRODUTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RELACAO_LOJA_PRODUTO" EntityType="Self.RELACAO_LOJA_PRODUTO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PEDIDOS_CLIENTE" Association="Self.FK_PEDIDOS_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PRODUTO" Association="Self.FK_PEDIDOS_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELACAO_LOJA_PRODUTO_LOJA" Association="Self.FK_RELACAO_LOJA_PRODUTO_LOJA">
+            <End Role="LOJA" EntitySet="LOJA" />
+            <End Role="RELACAO_LOJA_PRODUTO" EntitySet="RELACAO_LOJA_PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELACAO_LOJA_PRODUTO_PRODUTO" Association="Self.FK_RELACAO_LOJA_PRODUTO_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="RELACAO_LOJA_PRODUTO" EntitySet="RELACAO_LOJA_PRODUTO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ComprasWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ComprasWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="ComprasWebModel.CLIENTE" />
+          <EntitySet Name="LOJA" EntityType="ComprasWebModel.LOJA" />
+          <EntitySet Name="PEDIDOS" EntityType="ComprasWebModel.PEDIDOS" />
+          <EntitySet Name="PRODUTO" EntityType="ComprasWebModel.PRODUTO" />
+          <EntitySet Name="RELACAO_LOJA_PRODUTO" EntityType="ComprasWebModel.RELACAO_LOJA_PRODUTO" />
+          <AssociationSet Name="FK_PEDIDOS_CLIENTE" Association="ComprasWebModel.FK_PEDIDOS_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELACAO_LOJA_PRODUTO_LOJA" Association="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_LOJA">
+            <End Role="LOJA" EntitySet="LOJA" />
+            <End Role="RELACAO_LOJA_PRODUTO" EntitySet="RELACAO_LOJA_PRODUTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PEDIDOS_PRODUTO" Association="ComprasWebModel.FK_PEDIDOS_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="PEDIDOS" EntitySet="PEDIDOS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RELACAO_LOJA_PRODUTO_PRODUTO" Association="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_PRODUTO">
+            <End Role="PRODUTO" EntitySet="PRODUTO" />
+            <End Role="RELACAO_LOJA_PRODUTO" EntitySet="RELACAO_LOJA_PRODUTO" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS" Relationship="ComprasWebModel.FK_PEDIDOS_CLIENTE" FromRole="CLIENTE" ToRole="PEDIDOS" />
+        </EntityType>
+        <EntityType Name="LOJA">
+          <Key>
+            <PropertyRef Name="ID_LOJA" />
+          </Key>
+          <Property Name="ID_LOJA" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME_LOJA" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LOCALIDADE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RELACAO_LOJA_PRODUTO" Relationship="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_LOJA" FromRole="LOJA" ToRole="RELACAO_LOJA_PRODUTO" />
+        </EntityType>
+        <EntityType Name="PEDIDOS">
+          <Key>
+            <PropertyRef Name="ID_PEDIDO" />
+          </Key>
+          <Property Name="ID_PEDIDO" Type="Int64" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="Int64" Nullable="false" />
+          <Property Name="VALOR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="N_PEDIDO" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUTO" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="ComprasWebModel.FK_PEDIDOS_CLIENTE" FromRole="PEDIDOS" ToRole="CLIENTE" />
+          <NavigationProperty Name="PRODUTO" Relationship="ComprasWebModel.FK_PEDIDOS_PRODUTO" FromRole="PEDIDOS" ToRole="PRODUTO" />
+        </EntityType>
+        <EntityType Name="PRODUTO">
+          <Key>
+            <PropertyRef Name="ID_PRODUTO" />
+          </Key>
+          <Property Name="ID_PRODUTO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TIPO_PRODUTO" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PEDIDOS" Relationship="ComprasWebModel.FK_PEDIDOS_PRODUTO" FromRole="PRODUTO" ToRole="PEDIDOS" />
+          <NavigationProperty Name="RELACAO_LOJA_PRODUTO" Relationship="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_PRODUTO" FromRole="PRODUTO" ToRole="RELACAO_LOJA_PRODUTO" />
+        </EntityType>
+        <EntityType Name="RELACAO_LOJA_PRODUTO">
+          <Key>
+            <PropertyRef Name="ID_RELACAO_LOJA_PRODUTO" />
+          </Key>
+          <Property Name="ID_RELACAO_LOJA_PRODUTO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_LOJA" Type="Int64" Nullable="false" />
+          <Property Name="ID_PRODUTO" Type="Int64" Nullable="false" />
+          <Property Name="ESTOQUE" Type="Int64" />
+          <NavigationProperty Name="LOJA" Relationship="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_LOJA" FromRole="RELACAO_LOJA_PRODUTO" ToRole="LOJA" />
+          <NavigationProperty Name="PRODUTO" Relationship="ComprasWebModel.FK_RELACAO_LOJA_PRODUTO_PRODUTO" FromRole="RELACAO_LOJA_PRODUTO" ToRole="PRODUTO" />
+        </EntityType>
+        <Association Name="FK_PEDIDOS_CLIENTE">
+          <End Type="ComprasWebModel.CLIENTE" Role="CLIENTE" Multiplicity="1" />
+          <End Type="ComprasWebModel.PEDIDOS" Role="PEDIDOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="PEDIDOS">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RELACAO_LOJA_PRODUTO_LOJA">
+          <End Type="ComprasWebModel.LOJA" Role="LOJA" Multiplicity="1" />
+          <End Type="ComprasWebModel.RELACAO_LOJA_PRODUTO" Role="RELACAO_LOJA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LOJA">
+              <PropertyRef Name="ID_LOJA" />
+            </Principal>
+            <Dependent Role="RELACAO_LOJA_PRODUTO">
+              <PropertyRef Name="ID_LOJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PEDIDOS_PRODUTO">
+          <End Type="ComprasWebModel.PRODUTO" Role="PRODUTO" Multiplicity="1" />
+          <End Type="ComprasWebModel.PEDIDOS" Role="PEDIDOS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Principal>
+            <Dependent Role="PEDIDOS">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RELACAO_LOJA_PRODUTO_PRODUTO">
+          <End Type="ComprasWebModel.PRODUTO" Role="PRODUTO" Multiplicity="1" />
+          <End Type="ComprasWebModel.RELACAO_LOJA_PRODUTO" Role="RELACAO_LOJA_PRODUTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Principal>
+            <Dependent Role="RELACAO_LOJA_PRODUTO">
+              <PropertyRef Name="ID_PRODUTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComprasWebModelStoreContainer" CdmEntityContainer="ComprasWebEntities">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="ComprasWebModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LOJA">
+            <EntityTypeMapping TypeName="ComprasWebModel.LOJA">
+              <MappingFragment StoreEntitySet="LOJA">
+                <ScalarProperty Name="LOCALIDADE" ColumnName="LOCALIDADE" />
+                <ScalarProperty Name="NOME_LOJA" ColumnName="NOME_LOJA" />
+                <ScalarProperty Name="ID_LOJA" ColumnName="ID_LOJA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PEDIDOS">
+            <EntityTypeMapping TypeName="ComprasWebModel.PEDIDOS">
+              <MappingFragment StoreEntitySet="PEDIDOS">
+                <ScalarProperty Name="ID_PRODUTO" ColumnName="ID_PRODUTO" />
+                <ScalarProperty Name="N_PEDIDO" ColumnName="N_PEDIDO" />
+                <ScalarProperty Name="VALOR" ColumnName="VALOR" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_PEDIDO" ColumnName="ID_PEDIDO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUTO">
+            <EntityTypeMapping TypeName="ComprasWebModel.PRODUTO">
+              <MappingFragment StoreEntitySet="PRODUTO">
+                <ScalarProperty Name="TIPO_PRODUTO" ColumnName="TIPO_PRODUTO" />
+                <ScalarProperty Name="ID_PRODUTO" ColumnName="ID_PRODUTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RELACAO_LOJA_PRODUTO">
+            <EntityTypeMapping TypeName="ComprasWebModel.RELACAO_LOJA_PRODUTO">
+              <MappingFragment StoreEntitySet="RELACAO_LOJA_PRODUTO">
+                <ScalarProperty Name="ESTOQUE" ColumnName="ESTOQUE" />
+                <ScalarProperty Name="ID_PRODUTO" ColumnName="ID_PRODUTO" />
+                <ScalarProperty Name="ID_LOJA" ColumnName="ID_LOJA" />
+                <ScalarProperty Name="ID_RELACAO_LOJA_PRODUTO" ColumnName="ID_RELACAO_LOJA_PRODUTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

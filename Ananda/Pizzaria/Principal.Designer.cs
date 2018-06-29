@@ -92,6 +92,7 @@
             this.tipoDeProdutoToolStripMenuItem.Name = "tipoDeProdutoToolStripMenuItem";
             this.tipoDeProdutoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tipoDeProdutoToolStripMenuItem.Text = "Tipo de Produto";
+            this.tipoDeProdutoToolStripMenuItem.Click += new System.EventHandler(this.tipoDeProdutoToolStripMenuItem_Click);
             // 
             // windowsMenu
             // 
@@ -150,6 +151,7 @@
             this.MainMenuStrip = this.menuStrip;
             this.Name = "Principal";
             this.Text = "Principal";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Principal_Load);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
