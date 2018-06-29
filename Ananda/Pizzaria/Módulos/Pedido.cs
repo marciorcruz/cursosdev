@@ -23,7 +23,7 @@ namespace Pizzaria.Módulos
             obj.ShowDialog();
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void btnCadCliente_Click(object sender, EventArgs e)
         {
             Cliente obj = new Cliente();
             obj.ShowDialog();
