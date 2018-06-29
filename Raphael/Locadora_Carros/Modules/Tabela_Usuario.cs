@@ -21,5 +21,10 @@ namespace Locadora_Carros.Modules
         {
 
         }
+
+        private void Tabela_Usuario_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

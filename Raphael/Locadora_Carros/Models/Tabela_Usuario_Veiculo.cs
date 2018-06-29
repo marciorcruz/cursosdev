@@ -18,6 +18,7 @@ namespace Locadora_Carros.Models
         public int ID_Usuario { get; set; }
         public Nullable<int> Dias { get; set; }
         public Nullable<decimal> Valor_Total { get; set; }
+        public int ID { get; set; }
     
         public virtual Tabela_Usuario Tabela_Usuario { get; set; }
         public virtual Tabela_Veiculos Tabela_Veiculos { get; set; }

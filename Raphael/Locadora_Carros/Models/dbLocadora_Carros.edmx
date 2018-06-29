@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbempresasparaisoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbempresasparaisoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -37,17 +37,15 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome_Usuario" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Tabela_Usuario_Veiculo">
           <Key>
-            <PropertyRef Name="ID_Veiculo" />
-            <PropertyRef Name="ID_Usuario" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID_Veiculo" Type="int" Nullable="false" />
           <Property Name="ID_Usuario" Type="int" Nullable="false" />
           <Property Name="Dias" Type="int" />
           <Property Name="Valor_Total" Type="money" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="Tabela_Veiculos">
           <Key>
@@ -112,15 +110,8 @@ warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does
           <EntitySet Name="Tabela_Fabricantes" EntityType="Self.Tabela_Fabricantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tabela_Modelos" EntityType="Self.Tabela_Modelos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tabela_Usuario" EntityType="Self.Tabela_Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tabela_Usuario_Veiculo" EntityType="Self.Tabela_Usuario_Veiculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tabela_Veiculos" EntityType="Self.Tabela_Veiculos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tabela_Usuario_Veiculo" EntityType="Self.Tabela_Usuario_Veiculo" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Tabela_Usuario_Veiculo].[ID_Veiculo] AS [ID_Veiculo], 
-    [Tabela_Usuario_Veiculo].[ID_Usuario] AS [ID_Usuario], 
-    [Tabela_Usuario_Veiculo].[Dias] AS [Dias], 
-    [Tabela_Usuario_Veiculo].[Valor_Total] AS [Valor_Total]
-    FROM [dbo].[Tabela_Usuario_Veiculo] AS [Tabela_Usuario_Veiculo]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Tabela_Modelos_Tabela_Modelos" Association="Self.FK_Tabela_Modelos_Tabela_Modelos">
             <End Role="Tabela_Fabricantes" EntitySet="Tabela_Fabricantes" />
             <End Role="Tabela_Modelos" EntitySet="Tabela_Modelos" />
@@ -138,8 +129,7 @@ warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does
             <End Role="Tabela_Veiculos" EntitySet="Tabela_Veiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbempresasparaisoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -195,6 +185,7 @@ warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does
           <Key>
             <PropertyRef Name="ID_Veiculo" />
             <PropertyRef Name="ID_Usuario" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID_Veiculo" Type="Int32" Nullable="false" />
           <Property Name="ID_Usuario" Type="Int32" Nullable="false" />
@@ -202,6 +193,7 @@ warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does
           <Property Name="Valor_Total" Type="Decimal" Precision="19" Scale="4" />
           <NavigationProperty Name="Tabela_Usuario" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Usuario" FromRole="Tabela_Usuario_Veiculo" ToRole="Tabela_Usuario" />
           <NavigationProperty Name="Tabela_Veiculos" Relationship="Self.FK_Tabela_Usuario_Veiculo_Tabela_Veiculos" FromRole="Tabela_Usuario_Veiculo" ToRole="Tabela_Veiculos" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_Tabela_Modelos_Tabela_Modelos">
           <End Role="Tabela_Fabricantes" Type="Self.Tabela_Fabricantes" Multiplicity="0..1" />
@@ -331,6 +323,7 @@ warning 6002: The table/view 'dbempresasparaiso.dbo.Tabela_Usuario_Veiculo' does
           <EntitySetMapping Name="Tabela_Usuario_Veiculo">
             <EntityTypeMapping TypeName="dbempresasparaisoModel.Tabela_Usuario_Veiculo">
               <MappingFragment StoreEntitySet="Tabela_Usuario_Veiculo">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_Veiculo" ColumnName="ID_Veiculo" />
                 <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
                 <ScalarProperty Name="Dias" ColumnName="Dias" />
