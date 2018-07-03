@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.DAL", "..\..\..\..\Source\Repos\Repositorio\Repositorio.DAL\Repositorio.DAL.csproj", "{5E548A25-227D-4456-9458-1A780A48A71B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.DAL", "Repositorio.DAL\Repositorio.DAL.csproj", "{5E548A25-227D-4456-9458-1A780A48A71B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Entidades", "..\..\..\..\Source\Repos\Repositorio\Repositorio.Entidades\Repositorio.Entidades.csproj", "{EC3770AF-5BE7-4697-9689-07658115E0A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Entidades", "Repositorio.Entidades\Repositorio.Entidades.csproj", "{EC3770AF-5BE7-4697-9689-07658115E0A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Console", "..\..\..\..\Source\Repos\Repositorio\Repositorio.Console\Repositorio.Console.csproj", "{66B9C2C5-5F0B-4E7B-B862-F818D993DF94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorio.Console", "Repositorio.Console\Repositorio.Console.csproj", "{66B9C2C5-5F0B-4E7B-B862-F818D993DF94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
