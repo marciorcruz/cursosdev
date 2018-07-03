@@ -53,6 +53,7 @@
     <Compile Include="Repositorios\Base\IRepositorio.cs" />
     <Compile Include="Repositorios\Base\Repositorio.cs" />
     <Compile Include="Repositorios\ClienteRepositorio.cs" />
+    <Compile Include="Repositorios\TipodeClienteRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

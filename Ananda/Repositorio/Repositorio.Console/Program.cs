@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Repositorio.DAL;
 using Repositorio.DAL.Repositorios;
 using Repositorio.Entidades;
 
@@ -17,6 +18,25 @@ namespace Repositorio.Console
 
         private static void Adicionar()
         {
+
+            using (var repTipo = new TipodeClienteRepositorio())
+            {
+                new List<TipodeCliente>
+                    {
+                        new TipodeCliente { Nome="Físico"},
+                        new TipodeCliente { Nome="Jurídico"},
+                    }.ForEach(repTipo.Adicionar);
+
+                repTipo.SalvarTodos();
+                System.Console.WriteLine("Tipos de cliente adicionados com sucesso!");
+                System.Console.WriteLine("========= Tipos de Cliente =========");
+                foreach (var c in repTipo.GetAll())
+                {
+                    System.Console.WriteLine("{0} - {1}", c.TipodeClienteID, c.Nome);
+                }
+
+                System.Console.ReadKey();
+            }
             using (var repClientes = new ClienteRepositorio())
             {
                 new List<Cliente>
@@ -32,14 +52,13 @@ namespace Repositorio.Console
                 repClientes.SalvarTodos();
 
                 System.Console.WriteLine("Clientes adicionados com sucesso!");
-
                 System.Console.WriteLine("========= Clientes Cadastrados =========");
                 foreach (var c in repClientes.GetAll())
                 {
                     System.Console.WriteLine("{0} - {1}", c.ClienteID, c.Nome);
                 }
 
-                System.Console.ReadKey();                
+                System.Console.ReadKey();
             }
         }
     }
