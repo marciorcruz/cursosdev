@@ -10,6 +10,10 @@ namespace Repositorio.DAL.Contexto
 {
     public class BancoContexto : DbContext
     {
-        public BancoContexto() : base("ConnDB") { }
+        public BancoContexto() : base("ConnDB")
+        {
+        }
+
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }
