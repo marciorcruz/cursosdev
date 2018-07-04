@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Contexto\BancoContexto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositorios\Base\IRepositorio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -61,8 +62,6 @@
       <Name>Repositorio.Entidades</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositorios\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
