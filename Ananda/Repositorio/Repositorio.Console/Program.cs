@@ -13,53 +13,73 @@ namespace Repositorio.Console
     {
         static void Main(string[] args)
         {
-            Adicionar();
+            //Adicionar();
+
+            ExcluirVariosClientes();
         }
 
-        private static void Adicionar()
+        private static void ExcluirVariosClientes()
         {
-
-            using (var repTipo = new TipodeClienteRepositorio())
-            {
-                new List<TipodeCliente>
-                    {
-                        new TipodeCliente { Nome="Físico"},
-                        new TipodeCliente { Nome="Jurídico"},
-                    }.ForEach(repTipo.Adicionar);
-
-                repTipo.SalvarTodos();
-                System.Console.WriteLine("Tipos de cliente adicionados com sucesso!");
-                System.Console.WriteLine("========= Tipos de Cliente =========");
-                foreach (var c in repTipo.GetAll())
-                {
-                    System.Console.WriteLine("{0} - {1}", c.TipodeClienteID, c.Nome);
-                }
-
-                System.Console.ReadKey();
-            }
             using (var repClientes = new ClienteRepositorio())
             {
                 new List<Cliente>
                 {
-                    new Cliente { Nome="Microsoft", Ativo=true, CNPJ="9394.4343/0001-55",
-                                    Endereco="1, Microsoft One", Telefone="11574739494"},
-                    new Cliente { Nome="Google", Ativo=true, CNPJ="1234.9494/0001-33",
-                                    Endereco="12, Santa Clara, CA", Telefone="1185858483"},
-                    new Cliente { Nome="Oracle", Ativo=true, CNPJ="9876.4433/0002-44",
-                                    Endereco="54, Santa Monica", Telefone="4884848592"}
+                    new Cliente { Nome="Renato Haddad", Telefone="48575757"},
+                    new Cliente { Nome="Renato Marcantonio", Telefone="55929292"},
+                    new Cliente { Nome="Renato Jose", Telefone="77565644"}
                 }.ForEach(repClientes.Adicionar);
 
                 repClientes.SalvarTodos();
 
-                System.Console.WriteLine("Clientes adicionados com sucesso!");
-                System.Console.WriteLine("========= Clientes Cadastrados =========");
+                System.Console.WriteLine("Clientes Renato's adicionados!");
+
+                // lista todos os clientes
                 foreach (var c in repClientes.GetAll())
                 {
-                    System.Console.WriteLine("{0} - {1}", c.ClienteID, c.Nome);
+                    System.Console.WriteLine(c.ClienteID + " - " + c.Nome);
+                }
+
+                // excluir vários clientes Renato
+                try
+                {
+                    repClientes.Excluir(c => c.Nome.StartsWith("Renato"));
+                    repClientes.SalvarTodos();
+                    System.Console.WriteLine("clientes excluidos com sucesso");
+                }
+                catch (Exception)
+                {
+                    System.Console.WriteLine("erro ao excluir um cliente");
                 }
 
                 System.Console.ReadKey();
             }
+
+            //private static void Adicionar()
+            //{
+            //    using (var repClientes = new ClienteRepositorio())
+            //    {
+            //        new List<Cliente>
+            //        {
+            //            new Cliente { Nome="Microsoft", Ativo=true, CNPJ="9394.4343/0001-55",
+            //                            Endereco="1, Microsoft One", Telefone="11574739494"},
+            //            new Cliente { Nome="Google", Ativo=true, CNPJ="1234.9494/0001-33",
+            //                            Endereco="12, Santa Clara, CA", Telefone="1185858483"},
+            //            new Cliente { Nome="Oracle", Ativo=true, CNPJ="9876.4433/0002-44",
+            //                            Endereco="54, Santa Monica", Telefone="4884848592"}
+            //        }.ForEach(repClientes.Adicionar);
+
+            //        repClientes.SalvarTodos();
+
+            //        System.Console.WriteLine("Clientes adicionados com sucesso!");
+            //        System.Console.WriteLine("========= Clientes Cadastrados =========");
+            //        foreach (var c in repClientes.GetAll())
+            //        {
+            //            System.Console.WriteLine("{0} - {1}", c.ClienteID, c.Nome);
+            //        }
+
+            //        System.Console.ReadKey();
+            //    }
+            //}
         }
     }
 }
