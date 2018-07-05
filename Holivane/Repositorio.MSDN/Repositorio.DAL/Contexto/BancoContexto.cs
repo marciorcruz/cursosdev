@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using Repositorio.Entidades;
+using Repositorio.DAL;
 
 namespace Repositorio.DAL.Contexto
 {
     public class BancoContexto : DbContext
     {
         public BancoContexto() : base("ConnDB") { }
+        public DbSet<Cliente>Clientes { get; set; }
     }
 }
