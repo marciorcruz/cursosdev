@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Modelos" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Usuario" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Veiculos" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Usuario_Veiculo" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbempresasparaisoModel.Tabela_Usuario_Veiculo" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Modelos_Tabela_Modelos" ManuallyRouted="false" />
         <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Veiculos_Tabela_Veiculos" ManuallyRouted="false" />
         <AssociationConnector Association="dbempresasparaisoModel.FK_Tabela_Usuario_Veiculo_Tabela_Usuario" ManuallyRouted="false" />
